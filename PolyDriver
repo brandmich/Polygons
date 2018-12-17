@@ -1,0 +1,68 @@
+import java.util.Scanner;
+public class PolyDriver
+{
+   public static void main(String [] args)
+   {
+      Scanner input = new Scanner(System.in);
+      
+      int numPoly, sides;
+      double length;
+      
+      //how many polgyons does the user want.
+      System.out.print("How many polygons? ");
+      numPoly = input.nextInt();
+      
+      
+      //number of poly input validation
+      while(numPoly < 1)
+      {
+         System.out.print("You must enter at least 1 polygon!\n" + "Please re-enter: ");
+         
+         numPoly = input.nextInt();
+      }
+      
+      //create an array of polygons
+      NSidedPolygon [] polyArray = new NSidedPolygon[numPoly];
+      
+      //fill the array of objects
+      for(int i = 0; i < numPoly; i++)
+      {
+         //Number of sides
+         System.out.print("Enter numer of sides (between 3 and 10) for polygon " + (i + 1) + ": ");
+         sides = input.nextInt();
+         
+         //number of sides input validation
+         while(sides < 3 || sides > 10)
+         {
+            System.out.print("Sides must be between 3 and 10. Re-Enter the sides for polygon " + (i + 1) + ": ");
+            sides = input.nextInt();
+         }
+         
+         
+         //length of the sides
+         System.out.print("Enter the length of sides (>= 1) for polygon " + (i + 1) + ": ");
+         length = input.nextDouble();
+         
+         
+         //length of sides input validation
+         while(length < 1)
+         {
+            System.out.print("Side length must be >= 1. Re-enter length of sides for polygon " + (i + 1) + ": ");
+            length = input.nextDouble(); 
+         }
+         
+         //object creation
+         polyArray[i] = new NSidedPolygon(sides, length);
+         
+         System.out.println();
+      }//end of for loop
+      
+      
+      //prints the array and all its info
+      System.out.println("Here is the information for all the " + numPoly + "polygons: ");
+      for(int j = 0; j < numPoly; j++)
+      {
+         System.out.println(polyArray[j]);
+      }
+   }
+}
